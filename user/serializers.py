@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import User
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -10,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs is a dictionary that allows you to specify additional options for individual serializer fields.
         the field password will be included when creating or updating an object but will not be included when retrieving an object
         '''
-        extra_kwargs = {'password': {'write_only': True}}
+        # extra_kwargs = {'password': {'write_only': True}}
     
     # Validate age
     def validate_age(self, value):
@@ -24,14 +25,14 @@ class UserSerializer(serializers.ModelSerializer):
         can_be_contacted = data.get('can_be_contacted', False)
         can_data_be_shared = data.get('can_data_be_shared', False)
 
-        if age >= 16:
+        if age and age >= 16:
             if can_be_contacted not in [True, False]:
                 raise serializers.ValidationError("Consent to be contacted must be a boolean value.")
             if can_data_be_shared not in [True, False]:
                 raise serializers.ValidationError("Consent to share data must be a boolean value.")
         return data
 
-    # Create and save user
+    #  Create and save user
     def create(self, validated_data):
         user = User(
             username=validated_data['username'],

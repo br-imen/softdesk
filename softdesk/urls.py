@@ -21,6 +21,10 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from rest_framework_simplejwt.views import TokenBlacklistView
+from comments.views import CommentDetail, CommentList
+from user.views import UserListCreateAPIView, UserRetrieveUpdateDestroyAPIView
+from project.views import ProjectListCreateAPIView,ProjectRetrieveUpdateDestroyAPIView
+from issues.views import IssueListCreateAPIView, IssueRetrieveUpdateDestroyAPIView
 
 
 urlpatterns = [
@@ -29,4 +33,12 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/blacklist/', TokenBlacklistView.as_view(), name='token_blacklist'),
+    path('api/users/', UserListCreateAPIView.as_view(), name='user-list-create'),
+    path('api/users/<int:pk>/', UserRetrieveUpdateDestroyAPIView.as_view(), name='user-detail'),
+    path('api/projects/', ProjectListCreateAPIView.as_view(), name='project-list-create'),
+    path('api/projects/<int:pk>/', ProjectRetrieveUpdateDestroyAPIView.as_view(), name='project-detail'),
+    path('api/issues/', IssueListCreateAPIView.as_view(), name='issue-list-create'),
+    path('api/issues/<int:pk>/', IssueRetrieveUpdateDestroyAPIView.as_view(), name='issue-detail'),
+    path('issues/<int:issue_pk>/comments/', CommentList.as_view(), name='comment-list'),
+    path('issues/<int:issue_pk>/comments/<uuid:pk>/', CommentDetail.as_view(), name='comment-detail'),
 ]
