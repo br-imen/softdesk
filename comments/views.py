@@ -7,7 +7,7 @@ from .permissions import IsContributorOrReadOnly
 class CommentList(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    permission_classes = [IsContributorOrReadOnly]
+
 
     def perform_create(self, serializer):
         issue_id = self.kwargs.get('issue_pk')
@@ -17,5 +17,5 @@ class CommentList(generics.ListCreateAPIView):
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    permission_classes = [IsContributorOrReadOnly]
+
 

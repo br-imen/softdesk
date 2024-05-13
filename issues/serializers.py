@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from  rest_framework import serializers
 from rest_framework import status
 from .models import Issue
 from user.models import User

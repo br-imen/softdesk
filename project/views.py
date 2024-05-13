@@ -6,6 +6,8 @@ from rest_framework import viewsets
 from rest_framework import generics
 from .models import Project
 from .serializers import ProjectSerializer
+from .permissions import IsAuthorOrReadOnly, IsContributorOrAuthor
+
 
 
 class ProjectListCreateAPIView(generics.ListCreateAPIView):

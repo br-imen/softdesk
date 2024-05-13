@@ -37,8 +37,8 @@ urlpatterns = [
     path('api/users/<int:pk>/', UserRetrieveUpdateDestroyAPIView.as_view(), name='user-detail'),
     path('api/projects/', ProjectListCreateAPIView.as_view(), name='project-list-create'),
     path('api/projects/<int:pk>/', ProjectRetrieveUpdateDestroyAPIView.as_view(), name='project-detail'),
-    path('api/issues/', IssueListCreateAPIView.as_view(), name='issue-list-create'),
-    path('api/issues/<int:pk>/', IssueRetrieveUpdateDestroyAPIView.as_view(), name='issue-detail'),
-    path('issues/<int:issue_pk>/comments/', CommentList.as_view(), name='comment-list'),
-    path('issues/<int:issue_pk>/comments/<uuid:pk>/', CommentDetail.as_view(), name='comment-detail'),
+    path('api/projects/<int:project_pk>/issues/', IssueListCreateAPIView.as_view(), name='issue-list-create'),
+    path('api/projects/<int:project_pk>/issues/<int:pk>/', IssueRetrieveUpdateDestroyAPIView.as_view(), name='issue-detail'),
+    path('api/issues/<int:issue_pk>/comments/', CommentList.as_view(), name='comment-list'),
+    path('api/issues/<int:issue_pk>/comments/<uuid:pk>/', CommentDetail.as_view(), name='comment-detail'),
 ]
