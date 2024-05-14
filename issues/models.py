@@ -38,6 +38,6 @@ class Issue(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=TODO)
     time_created = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_issues')
-    assignees = models.ManyToManyField(User, related_name='assigned_issues')
+    assignee = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='assigned_issues', null=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='issues')
 

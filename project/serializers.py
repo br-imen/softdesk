@@ -5,7 +5,6 @@ from user.models import User
 
 class ContributorSerializer(serializers.ModelSerializer):
     def validate(self, value):
-        # manually validate
         pass
     class Meta:
         model = User
