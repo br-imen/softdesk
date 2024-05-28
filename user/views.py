@@ -1,16 +1,16 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
 from .models import User
-from .serializers import  UserSerializer
+from .serializers import UserSerializer
 
 
 class UserListCreateAPIView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permissions =[IsAuthenticated]
+    permissions = [IsAuthenticated]
+
 
 class UserRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permissions =[IsAuthenticated]
-
+    permissions = [IsAuthenticated]

@@ -1,6 +1,20 @@
-asgiref==3.8.1
-Django==5.0.4
-djangorestframework==3.15.1
-djangorestframework-simplejwt==5.3.1
-PyJWT==2.8.0
-sqlparse==0.5.0
+-i https://pypi.org/simple
+black==24.4.2; python_version >= '3.8'
+click==8.1.7; python_version >= '3.7'
+flake8==7.0.0; python_full_version >= '3.8.1'
+iniconfig==2.0.0; python_version >= '3.7'
+mccabe==0.7.0; python_version >= '3.6'
+mypy-extensions==1.0.0; python_version >= '3.5'
+packaging==24.0; python_version >= '3.7'
+pathspec==0.12.1; python_version >= '3.8'
+platformdirs==4.2.2; python_version >= '3.8'
+pluggy==1.5.0; python_version >= '3.8'
+pycodestyle==2.11.1; python_version >= '3.8'
+pyflakes==3.2.0; python_version >= '3.8'
+pytest==8.2.1; python_version >= '3.8'
+asgiref==3.8.1; python_version >= '3.8'
+django==5.0.6; python_version >= '3.10'
+djangorestframework==3.15.1; python_version >= '3.6'
+djangorestframework-simplejwt==5.3.1; python_version >= '3.8'
+pyjwt==2.8.0; python_version >= '3.7'
+sqlparse==0.5.0; python_version >= '3.8'

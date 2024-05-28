@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import (
@@ -21,24 +22,72 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from rest_framework_simplejwt.views import TokenBlacklistView
-from comments.views import CommentDetail, CommentList
+from comments.views import (
+    CommentRetrieveUpdateDestroyAPIView,
+    CommentListCreateAPIView,
+)
 from user.views import UserListCreateAPIView, UserRetrieveUpdateDestroyAPIView
-from project.views import ProjectListCreateAPIView,ProjectRetrieveUpdateDestroyAPIView
-from issues.views import IssueListCreateAPIView, IssueRetrieveUpdateDestroyAPIView
+from project.views import (
+    ProjectListCreateAPIView,
+    ProjectRetrieveUpdateDestroyAPIView,
+)
+from issues.views import (
+    IssueListCreateAPIView,
+    IssueRetrieveUpdateDestroyAPIView,
+)
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/token/blacklist/', TokenBlacklistView.as_view(), name='token_blacklist'),
-    path('api/users/', UserListCreateAPIView.as_view(), name='user-list-create'),
-    path('api/users/<int:pk>/', UserRetrieveUpdateDestroyAPIView.as_view(), name='user-detail'),
-    path('api/projects/', ProjectListCreateAPIView.as_view(), name='project-list-create'),
-    path('api/projects/<int:pk>/', ProjectRetrieveUpdateDestroyAPIView.as_view(), name='project-detail'),
-    path('api/projects/<int:project_pk>/issues/', IssueListCreateAPIView.as_view(), name='issue-list-create'),
-    path('api/projects/<int:project_pk>/issues/<int:pk>/', IssueRetrieveUpdateDestroyAPIView.as_view(), name='issue-detail'),
-    path('api/issues/<int:issue_pk>/comments/', CommentList.as_view(), name='comment-list'),
-    path('api/issues/<int:issue_pk>/comments/<uuid:pk>/', CommentDetail.as_view(), name='comment-detail'),
+    path("api-auth/", include("rest_framework.urls")),
+    path(
+        "api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"
+    ),
+    path(
+        "api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"
+    ),
+    path(
+        "api/token/blacklist/",
+        TokenBlacklistView.as_view(),
+        name="token_blacklist",
+    ),
+    path(
+        "api/users/", UserListCreateAPIView.as_view(), name="user-list-create"
+    ),
+    path(
+        "api/users/<int:pk>/",
+        UserRetrieveUpdateDestroyAPIView.as_view(),
+        name="user-detail",
+    ),
+    path(
+        "api/projects/",
+        ProjectListCreateAPIView.as_view(),
+        name="project-list-create",
+    ),
+    path(
+        "api/projects/<int:pk>/",
+        ProjectRetrieveUpdateDestroyAPIView.as_view(),
+        name="project-detail",
+    ),
+    path(
+        "api/projects/<int:project_pk>/issues/",
+        IssueListCreateAPIView.as_view(),
+        name="issue-list-create",
+    ),
+    path(
+        "api/projects/<int:project_pk>/issues/<int:pk>/",
+        IssueRetrieveUpdateDestroyAPIView.as_view(),
+        name="issue-detail",
+    ),
+    path(
+        "api/projects/<int:project_pk>/issues/<int:issue_pk>/comments/",
+        CommentListCreateAPIView.as_view(),
+        name="comment-list-create",
+    ),
+    path(
+        "api/projects/<int:project_pk>/issues/<int:issue_pk>/comments/"
+        "<uuid:pk>/",
+        CommentRetrieveUpdateDestroyAPIView.as_view(),
+        name="comment-detail",
+    ),
 ]
