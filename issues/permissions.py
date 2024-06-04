@@ -1,5 +1,6 @@
 from rest_framework import permissions
-
+from django.shortcuts import get_object_or_404
+from project.models import Project
 
 class AuthorPermission(permissions.BasePermission):
     """
@@ -15,6 +16,11 @@ class ContributorPermission(permissions.BasePermission):
     """
     only allow contributors of a project to view or create
     """
+    def has_permission(self, request, view):
+        if 'project_pk' in view.kwargs:
+            project = get_object_or_404(Project, pk=view.kwargs['project_pk'])
+            return request.user in project.contributors.all()
+        return False
 
     def has_object_permission(self, request, view, obj):
         return request.user in obj.project.contributors.all()
