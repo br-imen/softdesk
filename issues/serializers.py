@@ -21,7 +21,8 @@ class IssueSerializer(serializers.ModelSerializer):
             "project",
             "time_created",
         ]
-        read_only_fields = ["id", "author", "time_created"]
+        read_only_fields = ["id", "time_created"]
+        extra_kwargs = {'author': {'read_only': True}}
 
     def __init__(self, *args, **kwargs):
         super(IssueSerializer, self).__init__(*args, **kwargs)
@@ -34,7 +35,7 @@ class IssueSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         issue = Issue.objects.create(
-            **validated_data, author=self.context["request"].user
+            **validated_data,
         )
         return issue
 

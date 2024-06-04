@@ -15,6 +15,11 @@ class IssueListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = IssueSerializer
     permission_classes = [IsAuthenticated, ContributorPermission]
 
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['project_pk'] = self.kwargs["project_pk"]
+        return context
+
     def get_queryset(self):
         project_pk = self.kwargs["project_pk"]
         return Issue.objects.filter(project__pk=project_pk)
