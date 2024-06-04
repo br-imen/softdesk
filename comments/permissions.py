@@ -14,7 +14,6 @@ class ContributorPermission(permissions.BasePermission):
             obj = get_object_or_404(Comment, pk=view.kwargs['pk'])
             return request.user in obj.issue.project.contributors.all()
 
-        # For creating a new object where there isn't a specific instance to check
         if 'issue_pk' in view.kwargs:
             issue_pk = view.kwargs['issue_pk']
             issue = get_object_or_404(Issue, pk=issue_pk)

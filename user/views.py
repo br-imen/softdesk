@@ -21,7 +21,6 @@ class UserListCreateAPIView(generics.ListCreateAPIView):
         return [permission() for permission in permission_classes]
 
 
-
 class UserRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -36,4 +35,3 @@ class UserRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
         elif self.request.method in ["PUT", "PATCH", "DELETE"]:
             permission_classes = [IsAuthenticated, UserPermission]
         return [permission() for permission in permission_classes]
-
